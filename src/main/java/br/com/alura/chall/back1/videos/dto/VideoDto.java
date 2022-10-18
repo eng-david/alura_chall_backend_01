@@ -7,14 +7,24 @@ import br.com.alura.chall.back1.videos.model.Video;
 
 public class VideoDto {
 
+    private Long id;
     private String titulo;
     private String descricao;
     private String url;
 
     public VideoDto(Video video) {
+        this.id = video.getId();
         this.titulo = video.getTitulo();
         this.descricao = video.getDescricao();
         this.url = video.getUrl();
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
     }
 
     public String getTitulo() {
