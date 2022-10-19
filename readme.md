@@ -8,9 +8,23 @@ Esta API implemente as seguintes especifícações:
 4. Serviço de autenticação para acesso às rotas GET, POST, PUT e DELETE.
 
 ## Regras de Negócio
-1. Todos os campos de vídeos devem ser obrigatórios e validados.
+1. Todos os campos de vídeos e categorias devem ser obrigatórios e validados.
+2. A categoria com ID = 1, deve chamar LIVRE e caso ela não seja especificada na criação do vídeo, deve-se atribuir o ID = 1.
+
+## Recursos
+- Rotas CRUD para videos
+- Rotas CRUD para categorias
+- Rota GET relacionando categorias e videos:
+```
+GET categorias/:id/videos/
+```
+- Rota que busca vídeos por nome:
+```
+GET /videos/?search=jogos
+```
 
 ## Tecnologias Utilizadas
 - `linguagem Java`
 - `Spring Boot`
+- `Maven`
 - `Banco de Dados MySQL`
