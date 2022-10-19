@@ -1,9 +1,11 @@
 package br.com.alura.chall.back1.videos.model;
 
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.validation.constraints.NotBlank;
 
@@ -23,8 +25,9 @@ public class Video {
     @NotBlank
     @URL
     private String url;
+    @ManyToOne(fetch = FetchType.LAZY)
+    private Categoria categoria;
 
-    
     public Video() {
     }
 
@@ -58,6 +61,14 @@ public class Video {
 
     public void setUrl(String url) {
         this.url = url;
+    }
+
+    public Categoria getCategoria() {
+        return categoria;
+    }
+
+    public void setCategoria(Categoria categoria) {
+        this.categoria = categoria;
     }
 
 }

@@ -1,5 +1,13 @@
-insert into videos (titulo, descricao, url) values('Um Sonho de Liberdade', 'Dois homens presos se reúnem ao longo de vários anos, encontrando consolo e eventual redenção através de atos de decência comum.', 'https://www.imdb.com/title/tt0111161/');
-insert into videos (titulo, descricao, url) values('O Poderoso Chefão', 'O patriarca idoso de uma dinastia do crime organizado transfere o controle de seu império clandestino para seu filho relutante.', 'https://www.imdb.com/title/tt0068646');
-insert into videos (titulo, descricao, url) values('Batman: O Cavaleiro das Trevas', 'Quando a ameaça conhecida como O Coringa surge de seu passado, causa estragos e caos nas pessoas de Gotham. O Cavaleiro das Trevas deve aceitar um dos maiores testes para combater a injustiça.', 'https://www.imdb.com/title/tt0468569');
-insert into videos (titulo, descricao, url) values('O Poderoso Chefão II', 'Em 1950, Michael Corleone, agora à frente da família, tenta expandir o negócio do crime a Las Vegas, Los Angeles e Cuba.', 'https://www.imdb.com/title/tt0071562');
-insert into videos (titulo, descricao, url) values('12 Homens e uma Sentença', 'Um jurado que se aposenta tenta evitar um erro judicial forçando seus colegas a reconsiderarem as evidências.', 'https://www.imdb.com/title/tt0050083');
+insert into categorias (titulo, cor) values('LIVRE', 'green');
+insert into categorias (titulo, cor) values('Backend', 'blue');
+insert into categorias (titulo, cor) values('Frontend', 'red');
+insert into categorias (titulo, cor) values('devops', 'yellow');
+insert into categorias (titulo, cor) values('mobile', 'pink');
+
+insert into videos (titulo, descricao, url, categoria_id) values('Curso Switf', 'Curso de desenvolvimento Swift', 'https://www.alura.com.br/title/cursoswift/', 1);
+insert into videos (titulo, descricao, url, categoria_id) values('Java Iniciante', 'Curso de desenvolvimento Java iniciante', 'https://www.alura.com.br/title/javainiciante/', 2);
+insert into videos (titulo, descricao, url, categoria_id) values('Kotlin Iniciante', 'Curso de desenvolvimento Kotlin iniciante', 'https://www.alura.com.br/title/kotlininiciante/', 5);
+insert into videos (titulo, descricao, url, categoria_id) values('Curso Spring Boot', 'Curso de desenvolvimento Spring Boot', 'https://www.alura.com.br/title/cursospringboot/', 2);
+insert into videos (titulo, descricao, url, categoria_id) values('Desenvolvimento Android avançado', 'Curso de desenvolvimento Android avançado', 'https://www.alura.com.br/title/androidavancado/', 5);
+
+
