@@ -16,7 +16,7 @@ import org.hibernate.validator.constraints.URL;
 public class Video {
 
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long Id;
+    private Long id;
     @NotBlank
     private String titulo;
     @NotBlank
@@ -30,11 +30,11 @@ public class Video {
     }
 
     public Long getId() {
-        return Id;
+        return id;
     }
 
     public void setId(Long id) {
-        Id = id;
+        this.id = id;
     }
 
     public String getTitulo() {

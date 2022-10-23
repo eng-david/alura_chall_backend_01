@@ -1,7 +1,6 @@
 package br.com.alura.chall.back1.videos.dto;
 
-import java.util.ArrayList;
-import java.util.List;
+import org.springframework.data.domain.Page;
 
 import br.com.alura.chall.back1.videos.model.Video;
 
@@ -61,24 +60,9 @@ public class VideoDto {
         this.categoria = categoria;
     }
 
-    public static List<VideoDto> toVideoDto(List<Video> Video) {
+    public static Page<VideoDto> toVideoDto(Page<Video> videos) {
 
-        List<VideoDto> videosDto = new ArrayList<>();
-
-        Video.forEach(v -> {
-
-            // VideoDto dto = new VideoDto();
-
-            // dto.setTitulo(v.getTitulo());
-            // dto.setDescricao(v.getDescricao());
-            // dto.setUrl(v.getUrl());
-
-            // VideosDto.add(dto);
-
-            videosDto.add(new VideoDto(v));
-        });
-
-        return videosDto;
+        return videos.map(VideoDto::new);
 
     }
 

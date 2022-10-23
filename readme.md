@@ -7,6 +7,7 @@ Esta API implementa as seguintes especifícações:
 3. Base de dados para persistência das informações
 4. Serviço de autenticação para acesso às rotas GET, POST, PUT e DELETE
 5. Paginação das requisições
+6. Autenticação Stateless com JWT
 
 ## Regras de Negócio
 1. Todos os campos de vídeos e categorias devem ser obrigatórios e validados
@@ -14,10 +15,21 @@ Esta API implementa as seguintes especifícações:
 
 ## Recursos
 - Rotas CRUD para videos
+
+Retorna todos os videos:
+```
+GET /videos
+```
+
+Retorna video por id:
+```
+GET /videos/:id
+```
+
 - Rotas CRUD para categorias
 - Rota GET relacionando categorias e videos:
 ```
-GET categorias/:id/videos/
+GET /categorias/:id/videos/
 ```
 - Rota que busca vídeos por nome:
 ```

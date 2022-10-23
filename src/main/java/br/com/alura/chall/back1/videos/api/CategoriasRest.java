@@ -1,13 +1,15 @@
 package br.com.alura.chall.back1.videos.api;
 
 import java.net.URI;
-import java.util.List;
 import java.util.Optional;
 
 import javax.transaction.Transactional;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.web.PageableDefault;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -41,10 +43,10 @@ public class CategoriasRest {
 
     // read all
     @GetMapping
-    public ResponseEntity<List<CategoriaDto>> getCategorias() {
-        List<Categoria> categorias = categoriaRepository.findAll();
-        if (categorias.size() > 0) {
-            List<CategoriaDto> categoriaDto = CategoriaDto.toCategoriaDto(categorias);
+    public ResponseEntity<Page<CategoriaDto>> getCategorias(@PageableDefault(size = 5) Pageable pageable) {
+        Page<Categoria> categorias = categoriaRepository.findAll(pageable);
+        if (categorias.getTotalElements() > 0) {
+            Page<CategoriaDto> categoriaDto = CategoriaDto.toCategoriaDto(categorias);
             return ResponseEntity.ok(categoriaDto);
         }
         return ResponseEntity.notFound().build();
@@ -101,12 +103,14 @@ public class CategoriasRest {
 
     // read videos by categoria id
     @GetMapping("/{id}/videos")
-    public ResponseEntity<List<VideoDto>> getSpecificCategoriaVideos(@PathVariable Long id) {
+    public ResponseEntity<Page<VideoDto>> getSpecificCategoriaVideos(
+            @PageableDefault(size = 5) Pageable pageable, @PathVariable Long id) {
+
         Optional<Categoria> categoria = categoriaRepository.findById(id);
         if (categoria.isPresent()) {
-            List<Video> videos = videoRepository.findByCategoria(categoria.get());
-            if (videos.size() > 0) {
-                List<VideoDto> videosDto = VideoDto.toVideoDto(videos);
+            Page<Video> videos = videoRepository.findByCategoria(categoria.get(), pageable);
+            if (videos.getTotalElements() > 0) {
+                Page<VideoDto> videosDto = VideoDto.toVideoDto(videos);
                 return ResponseEntity.ok(videosDto);
             }
         }

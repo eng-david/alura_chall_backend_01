@@ -1,7 +1,6 @@
 package br.com.alura.chall.back1.videos.dto;
 
-import java.util.ArrayList;
-import java.util.List;
+import org.springframework.data.domain.Page;
 
 import br.com.alura.chall.back1.videos.model.Categoria;
 
@@ -42,15 +41,9 @@ public class CategoriaDto {
     }
 
     
-    public static List<CategoriaDto> toCategoriaDto(List<Categoria> categoria) {
+    public static Page<CategoriaDto> toCategoriaDto(Page<Categoria> categorias) {
 
-        List<CategoriaDto> categoriasDto = new ArrayList<>();
-
-        categoria.forEach(c -> {
-            categoriasDto.add(new CategoriaDto(c));
-        });
-
-        return categoriasDto;
+        return categorias.map(CategoriaDto::new);
 
     }
 

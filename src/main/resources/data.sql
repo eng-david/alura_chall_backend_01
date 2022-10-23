@@ -1,3 +1,5 @@
+insert into users (name, email, username, password) values('David', 'david@email.com', "david01", "$2a$10$YzNIZG5jJ8k4Gi5C/QmxCuMbL3It1i4JDcS0VshGmHzg3SENbVyfy");
+
 insert into categorias (titulo, cor) values('LIVRE', 'green');
 insert into categorias (titulo, cor) values('Backend', 'blue');
 insert into categorias (titulo, cor) values('Frontend', 'red');

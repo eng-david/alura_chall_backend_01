@@ -1,13 +1,15 @@
 package br.com.alura.chall.back1.videos.api;
 
 import java.net.URI;
-import java.util.List;
 import java.util.Optional;
 
 import javax.transaction.Transactional;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.web.PageableDefault;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -39,10 +41,10 @@ public class VideosRest {
 
     // read all
     @GetMapping
-    public ResponseEntity<List<VideoDto>> getVideos() {
-        List<Video> Videos = videoRepository.findAll();
-        if (Videos.size() > 0) {
-            List<VideoDto> VideosDto = VideoDto.toVideoDto(Videos);
+    public ResponseEntity<Page<VideoDto>> getVideos(@PageableDefault(size = 5) Pageable pageable) {
+        Page<Video> Videos = videoRepository.findAll(pageable);
+        if (Videos.getTotalElements() > 0) {
+            Page<VideoDto> VideosDto = VideoDto.toVideoDto(Videos);
             return ResponseEntity.ok(VideosDto);
         }
         return ResponseEntity.notFound().build();
@@ -94,12 +96,12 @@ public class VideosRest {
 
     // search by video name
     @GetMapping("/")
-    public ResponseEntity<List<VideoDto>> searchVideos(String search){
+    public ResponseEntity<Page<VideoDto>> searchVideos(@PageableDefault(size = 5) Pageable pageable, String search){
 
-        List<Video> videos = videoRepository.findByTituloContainingIgnoreCase(search);
+        Page<Video> videos = videoRepository.findByTituloContainingIgnoreCase(search, pageable);
 
-        if (videos.size() > 0){
-            List<VideoDto> videosDto = VideoDto.toVideoDto(videos);
+        if (videos.getTotalElements() > 0){
+            Page<VideoDto> videosDto = VideoDto.toVideoDto(videos);
             return ResponseEntity.ok(videosDto);
         }
 
