@@ -30,6 +30,7 @@ import br.com.alura.chall.back1.videos.repository.VideoRepository;
 
 @RestController
 @RequestMapping("/categorias")
+@Transactional
 public class CategoriasRest {
 
     @Autowired
@@ -63,6 +64,8 @@ public class CategoriasRest {
     // delete by id
     @DeleteMapping("/{id}")
     public ResponseEntity<?> deleteCategoria(@PathVariable Long id) {
+        if (id == 1l)
+            return ResponseEntity.unprocessableEntity().build();
         Optional<Categoria> categoria = categoriaRepository.findById(id);
         if (categoria.isPresent()) {
             categoriaRepository.delete(categoria.get());
@@ -83,16 +86,17 @@ public class CategoriasRest {
 
     // update by id
     @PutMapping("/{id}")
-    @Transactional
     public ResponseEntity<CategoriaDto> updateCategoria(@PathVariable Long id,
             @RequestBody @Valid CategoriaPutForm form) {
+        if (id == 1l)
+            return ResponseEntity.unprocessableEntity().build();
         Optional<Categoria> optCategoria = categoriaRepository.findById(id);
         if (optCategoria.isPresent()) {
             form.toCategoria(optCategoria.get());
             return ResponseEntity.ok(new CategoriaDto(optCategoria.get()));
         }
-        return ResponseEntity.notFound().build();
 
+        return ResponseEntity.notFound().build();
     }
 
     // read videos by categoria id
@@ -101,9 +105,9 @@ public class CategoriasRest {
         Optional<Categoria> categoria = categoriaRepository.findById(id);
         if (categoria.isPresent()) {
             List<Video> videos = videoRepository.findByCategoria(categoria.get());
-            if(videos.size() > 0){
+            if (videos.size() > 0) {
                 List<VideoDto> videosDto = VideoDto.toVideoDto(videos);
-                return ResponseEntity.ok(videosDto);    
+                return ResponseEntity.ok(videosDto);
             }
         }
         return ResponseEntity.notFound().build();

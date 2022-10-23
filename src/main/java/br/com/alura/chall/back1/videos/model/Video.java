@@ -15,15 +15,13 @@ import org.hibernate.validator.constraints.URL;
 @Table(name = "videos")
 public class Video {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long Id;
     @NotBlank
     private String titulo;
     @NotBlank
     private String descricao;
-    @NotBlank
-    @URL
+    @NotBlank @URL
     private String url;
     @ManyToOne(fetch = FetchType.LAZY)
     private Categoria categoria;

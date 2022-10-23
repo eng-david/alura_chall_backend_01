@@ -16,8 +16,7 @@ public class VideoForm {
     private String titulo;
     @NotBlank
     private String descricao;
-    @NotBlank
-    @URL
+    @NotBlank @URL
     private String url;
     private Long categoriaId = 1l;
 

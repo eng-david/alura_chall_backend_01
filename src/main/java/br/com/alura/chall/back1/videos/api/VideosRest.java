@@ -28,6 +28,7 @@ import br.com.alura.chall.back1.videos.repository.VideoRepository;
 
 @RestController
 @RequestMapping("/videos")
+@Transactional
 public class VideosRest {
 
     @Autowired
@@ -71,9 +72,9 @@ public class VideosRest {
 
     // create
     @PostMapping
-    public ResponseEntity<VideoDto> createVideo(@RequestBody @Valid VideoForm videoForm,
+    public ResponseEntity<VideoDto> createVideo(@RequestBody @Valid VideoForm form,
             UriComponentsBuilder uriBuilder) {
-        Video video = videoForm.toVideo(categoriaRepository);
+        Video video = form.toVideo(categoriaRepository);
         videoRepository.save(video);
         URI uri = uriBuilder.path("/videos/{id}").buildAndExpand(video.getId()).toUri();
         return ResponseEntity.created(uri).body(new VideoDto(video));
@@ -81,7 +82,6 @@ public class VideosRest {
 
     // update by id
     @PutMapping("/{id}")
-    @Transactional
     public ResponseEntity<VideoDto> updateVideo(@PathVariable Long id, @RequestBody @Valid VideoPutForm form) {
         Optional<Video> optVideo = videoRepository.findById(id);
         if (optVideo.isPresent()) {            
