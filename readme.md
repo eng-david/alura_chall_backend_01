@@ -62,6 +62,10 @@ GET /categorias/:id/videos/
 ## Deploy
 Foi feito o Deploy da aplicação como um serviço Web na nuvem, utilizando a plataforma Amazon AWS.
 
+<img width="720" alt="Captura de Tela 2022-10-24 às 7 40 21 PM" src="https://user-images.githubusercontent.com/57844726/197643486-00a51c54-8963-41db-b43f-9a71b160ff4a.png"><br>
+(rota "/videos" com o devido token JWT, dados fictícios)
+
+
 ## Tecnologias Utilizadas
 - `linguagem Java`
 - `Spring Boot`
