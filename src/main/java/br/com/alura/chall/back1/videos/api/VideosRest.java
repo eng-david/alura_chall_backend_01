@@ -1,6 +1,7 @@
 package br.com.alura.chall.back1.videos.api;
 
 import java.net.URI;
+import java.util.List;
 import java.util.Optional;
 
 import javax.transaction.Transactional;
@@ -8,6 +9,7 @@ import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.web.PageableDefault;
 import org.springframework.http.ResponseEntity;
@@ -107,5 +109,17 @@ public class VideosRest {
 
         return ResponseEntity.notFound().build();
     }
+
+    // read free videos
+    @GetMapping("/free")
+    public ResponseEntity<List<VideoDto>> getFreeVideos() {
+        Pageable pageable = PageRequest.of(0, 5);
+        Page<Video> freeVideos = videoRepository.findAll(pageable);
+        if (freeVideos.getTotalElements() > 0) {
+            Page<VideoDto> videosDto = VideoDto.toVideoDto(freeVideos);
+            return ResponseEntity.ok(videosDto.getContent());
+        }
+        return ResponseEntity.notFound().build();
+    } 
 
 }

@@ -32,9 +32,9 @@ public class AuthenticationFilter extends OncePerRequestFilter {
 
         String token = getToken(request);
         boolean isValid = tokenService.isValid(token);
-        if (isValid){
-            authenticateClient(token);
-        }    
+        if (isValid) {
+            authenticateClient(token);  
+        } 
 
         // go ahead
         filterChain.doFilter(request, response);
@@ -43,7 +43,8 @@ public class AuthenticationFilter extends OncePerRequestFilter {
     private void authenticateClient(String token) {
         Long userId = tokenService.getUserId(token);
         User user = userRepository.findById(userId).get();
-        UsernamePasswordAuthenticationToken authentication = new UsernamePasswordAuthenticationToken(user, null, user.getAuthorities());
+        UsernamePasswordAuthenticationToken authentication = new UsernamePasswordAuthenticationToken(user, null,
+                user.getAuthorities());
         SecurityContextHolder.getContext().setAuthentication(authentication);
     }
 

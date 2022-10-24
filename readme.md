@@ -12,6 +12,7 @@ Esta API implementa as seguintes especifícações:
 ## Regras de Negócio
 1. Todos os campos de vídeos e categorias devem ser obrigatórios e validados
 2. A categoria com ID = 1, deve chamar LIVRE e caso ela não seja especificada na criação do vídeo, deve-se atribuir o ID = 1
+3. Endpoint "GET /videos/free" com um número fixo de filmes disponível, sem a necessidade de autenticação
 
 ## Recursos
 - Rotas CRUD para videos
@@ -41,3 +42,10 @@ GET /videos/?search=jogos
 - `Spring Boot`
 - `Maven`
 - `Banco de Dados MySQL`
+
+## Pendentes
+- [ ] Caso a autenticação não seja válida, retornar uma mensagem informando Não autorizado ou Credenciais inválidas.
+- [ ] Caso usuário e senha inválido, informar Usuário e senha inválido.
+- [ ] Criar testes de unidade para os modelos e controller.
+- [ ] Crie testes de integração.
+- [ ] Colocar a API em produção, em algum provedor de cloud.
