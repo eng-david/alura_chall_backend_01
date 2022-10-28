@@ -24,12 +24,12 @@ GET /videos
 
 Retorna video por id:
 ```
-GET /videos/:id
+GET /videos/{id}
 ```
 
 Deleta video por id:
 ```
-DELETE /videos/:id
+DELETE /videos/{id}
 ```
 
 Cria um novo vídeo:
@@ -39,7 +39,7 @@ POST /videos/
 
 Atualiza um video por id:
 ```
-PUT /videos/:id
+PUT /videos/{id}
 ```
 
 Busca um video pelo nome:
@@ -54,7 +54,7 @@ GET /videos/free
 
 Mostra todos os videos de uma determinada categoria:
 ```
-GET /categorias/:id/videos/
+GET /categorias/{id}/videos/
 ```
 
 - Rotas CRUD semelhantes também para as categorias em "/categorias"
