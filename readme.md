@@ -44,7 +44,7 @@ PUT /videos/:id
 
 Busca um video pelo nome:
 ```
-PUT /videos/?search=
+GET /videos/?search=
 ```
 
 Mostra determinados videos sem necessidade de autenticação:
