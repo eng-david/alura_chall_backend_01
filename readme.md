@@ -1,4 +1,11 @@
 # ALURAFLIX
+
+![Status Badge](https://img.shields.io/badge/Status-Parado-red)
+
+### Versão mais recente desse projeto está disponível em: 
+https://github.com/eng-david/Alura_Challenge_Backend_5
+
+<br>
 API REST desenvolvida durante o challenge#01 de backend da Alura.
 
 Esta API implementa as seguintes especificações:
